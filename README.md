@@ -1,2 +1,2 @@
-# Okd_MangementSystem
+# MangementSystem
 course project for oop
