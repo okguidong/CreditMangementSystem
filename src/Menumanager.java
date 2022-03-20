@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class Menumanager {
 
 	public static void main(String[] args) {
-		int num=0;
+		int num=5;
 		Scanner input = new Scanner(System.in);
 
 		while(num != 6) {
@@ -22,10 +22,6 @@ public class Menumanager {
 				float CreditScore=input.nextFloat(); //과목점수 입력
 				System.out.print("credit:");//"이수학점:" 출력
 				int Credit=input.nextInt();//이수학점 입력
-			case 2:
-			case 3:
-			case 4:
-			case 5:
 			
 			}
 		}
