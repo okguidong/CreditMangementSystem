@@ -18,7 +18,7 @@ public class Menumanager {
 			case 1:
 				System.out.print("subject name:");//"과목이름: "출력
 				String SubjectName=input.next();//과목이름 입력
-				System.out.print("credit score:\n ex)4.5,4,3.5,2.5,2,1.5,1,0.5,0");//"과목 점수:" 출력
+				System.out.print("credit score:\n ex) 4.5,4,3.5,2.5,2,1.5,1,0.5,0");//"과목 점수:" 출력
 				float CreditScore=input.nextFloat(); //과목점수 입력
 				System.out.print("credit:");//"이수학점:" 출력
 				int Credit=input.nextInt();//이수학점 입력
