@@ -4,10 +4,6 @@ public class Credit {
 	private String name;
 	private int credit;
 	private float score;
-
-	public void print(){
-		System.out.println(name + " / " + score + " / " + credit);
-	}
 	
 	public void setname(String name) 
 	{
@@ -34,5 +30,29 @@ public class Credit {
 	
 	public String getname() {
 		return this.name;
-	}	
+	}
+	public void print()
+	{
+		
+		System.out.println(getname() + " / " + getscore() + " / " + getcredit() + " / " );	
+	}
+	public float averageUp(String a) {
+		if(a=="전체") {
+			return getscore()*getcredit();
+		}
+		else {
+			return 0;
+		}
+	}
+	
+	public float averageDown(String a) {
+		if(a=="전체") {
+			return getcredit();
+		}
+		else {
+			return 0;
+		}
+	}
+	
 }
+

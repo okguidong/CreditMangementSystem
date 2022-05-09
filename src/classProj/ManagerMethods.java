@@ -25,7 +25,7 @@ public class ManagerMethods {
 		input.nextLine();
 	}
 	
-	public void deletecredits() 
+	public void deletecredits(String a) 
 	{
 		for (int i = 0; i < list.size(); i++) {
 			System.out.println(list.get(i));
@@ -33,10 +33,18 @@ public class ManagerMethods {
 		System.out.print("어떤 학점을 삭제 하시겠습니까?(): ");
 		String delete = input.nextLine(); //값이 삭제될 과목를 입력받고
 		for(int i=0;i<list.size();i++) {
-			if(list.get(i).getname()==delete)
+			if(list.get(i).getname().equals(delete))
 				list.remove(i);
 		}
 	}
+	
+	public void deletecredits(int a) 
+	{
+		System.out.print("어떤 학점을 삭제 하시겠습니까?(): ");
+		list.remove(a-1);
+
+	}
+
 	
 	public void editcredits() 
 	{
@@ -59,6 +67,7 @@ public class ManagerMethods {
 				System.out.println("수정할 과목 종류를 입력하시오(교양,전공)");
 				String eidxkind = input.nextLine();
 				list.get(i).setkind(eidxkind);
+				input.nextLine();
 			}
 		}
 
@@ -68,6 +77,28 @@ public class ManagerMethods {
 		for (int i = 0; i < list.size(); i++) {
 			list.get(i).print();
 		}
+	}
+	public void Calculation() {
+		float x=0;
+		float y=0;
+		float z=0;
+		float a=0;
+		float b=0;
+		float c=0;
+		
+		
+		for (int i = 0; i < list.size(); i++) {
+			x+= list.get(i).averageUp("교양");
+			y+= list.get(i).averageUp("전공");
+			z+= list.get(i).averageUp("전체");
+			
+			a+= list.get(i).averageDown("교양");
+			b+= list.get(i).averageDown("전공");
+			c+= list.get(i).averageDown("전체");
+		
+		}
+		System.out.println("교양평균:"+x/a+"\n전공평균:"+y/b+"\n전체평균:"+z/c+"\n");
+		
 	}
 }
 
