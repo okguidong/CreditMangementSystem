@@ -1,6 +1,6 @@
 package classProj;
 
-public class Kind extends Credit {
+public class Kind extends Credit implements Calculator{
 	private String kind;
 	
 	public void setkind(String kind) 
@@ -15,7 +15,6 @@ public class Kind extends Credit {
 	
 	public void print()
 	{
-		
 		System.out.println(getname() + " / " + getscore() + " / " + getcredit() + " / " + getkind());	
 	}
 	public float averageUp(String a) {
@@ -49,7 +48,6 @@ public class Kind extends Credit {
 		{
 			if(getkind().equals("교양")) {//교양 평균
 				x= getcredit();
-
 			}
 		}
 		else if(a=="전공") //전공의 평균
@@ -60,10 +58,9 @@ public class Kind extends Credit {
 		}
 
 		else
-		{//전체의 편균	
+		{//전체의 평균	
 			x= getcredit();
 		}
 		return x;
 	}
-	
 }

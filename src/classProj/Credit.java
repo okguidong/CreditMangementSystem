@@ -1,6 +1,6 @@
 package classProj;
 
-public class Credit {
+public abstract class Credit {
 	private String name;
 	private int credit;
 	private float score;
@@ -31,11 +31,8 @@ public class Credit {
 	public String getname() {
 		return this.name;
 	}
-	public void print()
-	{
-		
-		System.out.println(getname() + " / " + getscore() + " / " + getcredit() + " / " );	
-	}
+	abstract void print();
+	
 	public float averageUp(String a) {
 		if(a=="ÀüÃ¼") {
 			return getscore()*getcredit();

@@ -11,5 +11,4 @@ public class menu {
 		System.out.println("6. Exit"); //Á¾·á
 		System.out.print("Enter a command: ");
 	}
-
 }

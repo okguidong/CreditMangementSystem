@@ -1,15 +1,10 @@
 package classProj;
-
 import java.util.*;
 
 public class MenuManager {
 	public static void main(String[] args) {
-		//Kind add = new Kind();
-		//ArrayList<Kind> list = new ArrayList<>();
-
 		int num = 0;
 		Scanner input = new Scanner(System.in);
-		
 		ManagerMethods m = new ManagerMethods();
 
 		while(num != 6) {
@@ -39,8 +34,7 @@ public class MenuManager {
 					delete+=1;
 					m.deletecredits(delete);
 				}	
-			}
-			
+			}			
 			else if(num == 3) {
 				m.editcredits();
 			}
@@ -50,7 +44,6 @@ public class MenuManager {
 			else if(num == 5) {
 				m.Calculation();
 			}
-
 		}
 	}
 }
