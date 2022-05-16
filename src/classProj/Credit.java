@@ -50,6 +50,5 @@ public abstract class Credit {
 			return 0;
 		}
 	}
-	
 }
 

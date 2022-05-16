@@ -14,7 +14,8 @@ public class MenuManager {
 
 			if(num == 1) {
 				m.addcredits();
-			}
+				}
+				
 			else if(num == 2) {
 				System.out.println("어떤 방법으로 삭제하시겠습니까? 1. 이름으로 삭제 2.번째로 삭제");
 				for (int i = 0; i < m.list.size(); i++) 
@@ -26,16 +27,22 @@ public class MenuManager {
 				int how;
 				how = input.nextInt();
 				if(how == 1) {
+					System.out.print("어떤 학점을 삭제 하시겠습니까?(): ");
 					String delete = input.nextLine();
 				m.deletecredits(delete);
 				}
 				else if(how == 2) {
+					System.out.print("어떤 학점을 삭제 하시겠습니까?(): ");
 					int delete = input.nextInt();
-					delete+=1;
 					m.deletecredits(delete);
+					
 				}	
 			}			
 			else if(num == 3) {
+				for (int i = 0; i < m.list.size(); i++) {
+				m.list.get(i).print();
+				}
+				
 				m.editcredits();
 			}
 			else if(num == 4) {
