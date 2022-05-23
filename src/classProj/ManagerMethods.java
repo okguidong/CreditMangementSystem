@@ -1,9 +1,19 @@
 package classProj;
 
-import java.util.*;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.InputMismatchException;
+import java.util.Scanner;
 
-public class ManagerMethods {
 
+
+public class ManagerMethods implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8854294788266882070L;
+	
 	static ArrayList<Kind> list = new ArrayList<>();
 	Scanner input = new Scanner(System.in);
 	MyException Ex = new MyException();
