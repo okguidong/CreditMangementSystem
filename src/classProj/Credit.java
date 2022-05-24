@@ -7,6 +7,7 @@ public abstract class Credit implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = -4133798904510003622L;
+	
 	private String name;
 	private int credit;
 	private float score;

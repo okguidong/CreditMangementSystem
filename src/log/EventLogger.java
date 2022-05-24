@@ -1,25 +1,24 @@
 package log;
 
-
-import java.io.IOException; 
-
-import java.util.logging.FileHandler;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
+import java.util.logging.FileHandler;
 
 public class EventLogger {
-
-   FileHandler filehandler;
-   LogManager lm;
-   Logger logger;
+	FileHandler filehandler;
+	LogManager logmanager;
+	Logger  logger;
 
    public EventLogger(String fileName) {
 
       try {
-         lm = LogManager.getLogManager();
-         logger = lm.getLogger(Logger.GLOBAL_LOGGER_NAME);
-         filehandler = new FileHandler(fileName);
+         logmanager = LogManager.getLogManager();
+         logger = logmanager.getLogger(Logger.GLOBAL_LOGGER_NAME);
+         filehandler = new 	FileHandler(fileName);
          filehandler.setFormatter(new SimpleFormatter());
          logger.addHandler(filehandler);
       } catch (IOException e) {

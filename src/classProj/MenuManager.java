@@ -5,19 +5,26 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.*;
 import log.EventLogger;
 
-public class MenuManager {
+public class MenuManager implements Serializable{
+	private static final long serialVersionUID = -2031193876552779388L;
+	
 	static EventLogger logger = new EventLogger("log.txt");
+	
+	
 	public static void main(String[] args) {
-		int num = 0;
+		int num = 0;//초반 메뉴를 표시하기 위해 0으로 지정
 		Scanner input = new Scanner(System.in);
-		ManagerMethods ManagerMethods = getObject("ManagerMethods.ser") ;
-		if(ManagerMethods==null) {
-		ManagerMethods = new ManagerMethods();
+		
+		ManagerMethods ManagerMethods=  getObject("ManagerMethods.ser");
+		if(ManagerMethods == null) {
+			ManagerMethods = new ManagerMethods();
 		}
-		putObject(ManagerMethods,"ManagerMethods.ser");
+		
+		putObject(ManagerMethods, "ManagerMethods.ser");
 
 		while(num != 6) {
 			menu();
@@ -26,6 +33,7 @@ public class MenuManager {
 
 			if(num == 1) {
 				ManagerMethods.addcredits();
+				logger.log("add a credit");
 				}
 				
 			else if(num == 2) {
@@ -47,8 +55,8 @@ public class MenuManager {
 					System.out.print("어떤 학점을 삭제 하시겠습니까?(): ");
 					int delete = input.nextInt();
 					ManagerMethods.deletecredits(delete);
-					
-				}	
+				}
+				logger.log("delete a credit");
 			}			
 			else if(num == 3) {
 				for (int i = 0; i < ManagerMethods.list.size(); i++) {
@@ -56,9 +64,11 @@ public class MenuManager {
 				}
 				
 				ManagerMethods.editcredits();
+				logger.log("add a edit");
 			}
 			else if(num == 4) {
 				ManagerMethods.viewcredits();
+				logger.log("edit a list of credit");
 			}
 			else if(num == 5) {
 				ManagerMethods.Calculation();
@@ -77,18 +87,18 @@ public class MenuManager {
 	}
 	
 	public static ManagerMethods getObject(String filename) {
-		ManagerMethods m =null;
-		FileInputStream file;
+		ManagerMethods managermethods =null;
 		try {
-			file = new FileInputStream(filename);
+			FileInputStream file = new FileInputStream(filename);
 			ObjectInputStream in = new ObjectInputStream(file);
 			
-			m = (ManagerMethods) in.readObject();
+			managermethods = (ManagerMethods)in.readObject();
 			
 			in.close();
 			file.close();
+			
 		} catch (FileNotFoundException e) {
-			return m;
+			return managermethods;
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -97,23 +107,21 @@ public class MenuManager {
 			e.printStackTrace();
 		}
 		
-		return m;
+		return managermethods;
 	}
 	
-	public static void putObject(ManagerMethods m, String filename) {
+	public static void putObject(ManagerMethods managerMethods, String filename) {
 		try {
 			FileOutputStream file = new FileOutputStream(filename);
 			ObjectOutputStream out = new ObjectOutputStream(file);
 			
-			out.writeObject(m);
+			out.writeObject(managerMethods);
 			
 			out.close();
 			file.close();
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
