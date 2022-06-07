@@ -1,61 +1,45 @@
-package classProj;
+package classProject;
 
 import java.io.Serializable;
 
-public abstract class Credit implements Serializable{
+abstract public class Credit implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -4133798904510003622L;
-	
+	private static final long serialVersionUID = -1219826540388449953L;
 	private String name;
+	private Float score;
 	private int credit;
-	private float score;
+
+//	public static void TeacherName(String a, String b) {
+//		System.out.println(a +" "+b);
+//	}
+//	
+//	public static void TeacherName(String c) {
+//		System.out.print(c);
+//	}
 	
-	public void setname(String name) 
-	{
+	public void setName(String name) {
 		this.name = name;
 	}
-	
-	public void setcredit(int credit) 
-	{
-		this.credit = credit;
+	public String getName() {
+		return this.name;
 	}
 	
-	public void setscore(float score) 
-	{
+	public void setScore(Float score) {
 		this.score = score;
 	}
 	
-	public int getcredit() {
+	public Float getScore() {
+		return this.score;
+	}
+	public void setCredit(int credit) {
+		this.credit = credit;
+	}
+	
+	public int getCredit()	{
 		return this.credit;
 	}
 	
-	public float getscore() {
-		return this.score;
-	}
-	
-	public String getname() {
-		return this.name;
-	}
-	abstract void print();
-	
-	public float averageUp(String a) {
-		if(a=="전체") {
-			return getscore()*getcredit();
-		}
-		else {
-			return 0;
-		}
-	}
-	
-	public float averageDown(String a) {
-		if(a=="전체") {
-			return getcredit();
-		}
-		else {
-			return 0;
-		}
-	}
+	public abstract void printInfo();
 }
-

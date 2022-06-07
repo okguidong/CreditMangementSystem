@@ -1,124 +1,109 @@
-package classProj;
+package classProject;
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.Serializable;
-import java.util.*;
+import java.util.Scanner;
+import java.util.logging.Logger;
+
+import gui.WindowFrame;
 import log.EventLogger;
 
-public class MenuManager implements Serializable{
-	private static final long serialVersionUID = -2031193876552779388L;
+public class MenuManager {
 	
 	static EventLogger logger = new EventLogger("log.txt");
-	
-	
+
 	public static void main(String[] args) {
-		int num = 0;//초반 메뉴를 표시하기 위해 0으로 지정
+
 		Scanner input = new Scanner(System.in);
-		
-		ManagerMethods ManagerMethods=  getObject("ManagerMethods.ser");
-		if(ManagerMethods == null) {
-			ManagerMethods = new ManagerMethods();
+
+		CreditManagermentSystem Credit_m = getObject("Credit_m.ser");
+		if(Credit_m == null) {
+			Credit_m = new CreditManagermentSystem(input);
+		} else {
+			Credit_m.input = input;
 		}
 		
-		putObject(ManagerMethods, "ManagerMethods.ser");
+		WindowFrame frame = new WindowFrame(Credit_m);
+		
+		int n = 0;
 
-		while(num != 6) {
-			menu();
-			num = input.nextInt();
-			input.nextLine();		
-
-			if(num == 1) {
-				ManagerMethods.addcredits();
-				logger.log("add a credit");
-				}
-				
-			else if(num == 2) {
-				System.out.println("어떤 방법으로 삭제하시겠습니까? 1. 이름으로 삭제 2.번째로 삭제");
-				for (int i = 0; i < ManagerMethods.list.size(); i++) 
-				{
-					System.out.print(i+"./");
-					ManagerMethods.list.get(i).print();
-				}
-				
-				int how;
-				how = input.nextInt();
-				if(how == 1) {
-					System.out.print("어떤 학점을 삭제 하시겠습니까?(): ");
-					String delete = input.nextLine();
-				ManagerMethods.deletecredits(delete);
-				}
-				else if(how == 2) {
-					System.out.print("어떤 학점을 삭제 하시겠습니까?(): ");
-					int delete = input.nextInt();
-					ManagerMethods.deletecredits(delete);
-				}
-				logger.log("delete a credit");
-			}			
-			else if(num == 3) {
-				for (int i = 0; i < ManagerMethods.list.size(); i++) {
-				ManagerMethods.list.get(i).print();
-				}
-				
-				ManagerMethods.editcredits();
-				logger.log("add a edit");
+		while(n != 5)
+		{
+			System.out.println("*** Private Lesson Management System Menu ***");
+			System.out.println("1. Add Students");
+			System.out.println("2. Delete Students");
+			System.out.println("3. Edit Students");
+			System.out.println("4. View Students");
+			System.out.println("5. Exit");
+			System.out.print("Select one number between 1 - 5 :  ");
+			n = input.nextInt();
+			input.nextLine();
+			System.out.println();
+			if(n == 1) {
+				Credit_m.add();
+				logger.log("add a Credit");
 			}
-			else if(num == 4) {
-				ManagerMethods.viewcredits();
-				logger.log("edit a list of credit");
+			else if(n == 2) {
+				Credit_m.delete();
+				logger.log("delete a Credit");
 			}
-			else if(num == 5) {
-				ManagerMethods.Calculation();
+			else if(n == 3) {
+				Credit_m.edit();
+				logger.log("edit a Credit");
+			}
+			else if(n == 4) {
+				Credit_m.view();
+				logger.log("view a list of Credit");
+			}
+			else if(n >= 6)
+			{
+				System.out.println("1-5 사이의 숫자를 고르시오");
+				System.out.println("");
 			}
 		}
+		putObject(Credit_m, "Credit_m.ser");
+		System.out.println("End.");
 	}
-	
-	public static void menu() {
-		System.out.println("1. Add Credits"); //학점 추가
-		System.out.println("2. Delete Credits"); //학점 삭제
-		System.out.println("3. Edit Credits"); //학점 수정
-		System.out.println("4. View Credits"); //학점 일람
-		System.out.println("5. Show Average"); //평균 출력
-		System.out.println("6. Exit"); //종료
-		System.out.print("Enter a command: ");
-	}
-	
-	public static ManagerMethods getObject(String filename) {
-		ManagerMethods managermethods =null;
+
+	public static CreditManagermentSystem getObject(String filename) {
+		CreditManagermentSystem Credit_m = null;
+
+		
 		try {
 			FileInputStream file = new FileInputStream(filename);
 			ObjectInputStream in = new ObjectInputStream(file);
-			
-			managermethods = (ManagerMethods)in.readObject();
-			
+
+			Credit_m = (CreditManagermentSystem)in.readObject();
+
 			in.close();
 			file.close();
-			
+
 		} catch (FileNotFoundException e) {
-			return managermethods;
+			return Credit_m;
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		return managermethods;
+
+		return Credit_m;
 	}
-	
-	public static void putObject(ManagerMethods managerMethods, String filename) {
+
+	public static void putObject(CreditManagermentSystem Credit_m, String filename) {
+		
 		try {
 			FileOutputStream file = new FileOutputStream(filename);
 			ObjectOutputStream out = new ObjectOutputStream(file);
-			
-			out.writeObject(managerMethods);
-			
+
+			out.writeObject(Credit_m);
+
 			out.close();
 			file.close();
+
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -127,3 +112,4 @@ public class MenuManager implements Serializable{
 	}
 }
 
+//
