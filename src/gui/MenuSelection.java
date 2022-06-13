@@ -24,10 +24,10 @@ public class MenuSelection extends JPanel {
 		JPanel panel2 = new JPanel();
 		JLabel label = new JLabel("Menu Selection");
 		
-		JButton button1 = new JButton("1. Add Students");
-		JButton button2 = new JButton("2. Delete Students");
-		JButton button3 = new JButton("3. Edit Students");
-		JButton button4 = new JButton("4. View Students");
+		JButton button1 = new JButton("1. Add Credit");
+		JButton button2 = new JButton("2. Delete Credit");
+		JButton button3 = new JButton("3. Edit Credit");
+		JButton button4 = new JButton("4. View Credit");
 		JButton button5 = new JButton("5. Exit");
 		
 		button1.addActionListener(new ButtonAddListener(frame));

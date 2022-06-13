@@ -14,12 +14,14 @@ public class CreditViewer extends JPanel{
 	WindowFrame frame;
 	CreditManagermentSystem CreditManager;
 	
-	public CreditViewer(WindowFrame frame, CreditManagermentSystem CreditManager) {
-		
-		this.frame = frame;
-		this.CreditManager = CreditManager;
-		
-		System.out.println("***"+CreditManager.size()+"***");
+	public CreditManagermentSystem getCreditManager() {
+		return CreditManager;
+	}
+	
+
+	public void setCreditManager(CreditManagermentSystem creditManager) {
+		CreditManager = creditManager;
+		this.removeAll();
 		
 		DefaultTableModel model = new DefaultTableModel();
 		model.addColumn("°ú¸ñ");
@@ -48,6 +50,14 @@ public class CreditViewer extends JPanel{
 		JScrollPane sp = new JScrollPane(table);
 		
 		this.add(sp);
+	}
+
+	public CreditViewer(WindowFrame frame, CreditManagermentSystem CreditManager) {
+		
+		this.frame = frame;
+		this.CreditManager = CreditManager;
+		
+		System.out.println("***"+CreditManager.size()+"***");
 	}
 
 }

@@ -11,7 +11,7 @@ public class CreditManagermentSystem implements Serializable{
 	 */
 	private static final long serialVersionUID = -3669365244745928074L;
 
-	ArrayList<KindCredit> KClist = new ArrayList<>();
+	public ArrayList<KindCredit> KClist = new ArrayList<>();
 
 	transient Scanner input;
 
@@ -32,7 +32,7 @@ public class CreditManagermentSystem implements Serializable{
 		return KClist.get(idex);
 	}
 	
-	public void add() { //과외생을 추가하는 함수
+	public void add() { 
 		KindCredit KC = new KindCredit();
 
 		System.out.print("과목이름을 입력하시오 : ");
@@ -46,16 +46,28 @@ public class CreditManagermentSystem implements Serializable{
 		input.next();
 		System.out.println("");
 
-		this.KClist.add(KC); //과외생의 수를 늘림
+		this.KClist.add(KC); 
+	}
+	
+	public void add (String name,float score,int credit,String kind ) { 
+		KindCredit KC = new KindCredit();
+		KC.setName(name);
+		KC.setScore(score);
+		KC.setCredit(credit);
+		KC.setKind(kind);
+		this.KClist.add(KC); 
+	}
+	public void add (KindCredit kindCredit) {
+		KClist.add(kindCredit);	
 	}
 
-	public void delete() { //과외생을 삭제하는 함수
+	public void delete() { 
 		try {
 			System.out.print("몇 번째 과목을 삭제하시겠습니까?: ");
 			int number = input.nextInt();
 			input.nextLine();
 
-			if (number < KClist.size()) { //과외생의 수를 줄임
+			if (number < KClist.size()) { 
 				KClist.remove(number);
 				System.out.println("수업이 삭제되었습니다.");
 				input.nextLine();
@@ -72,7 +84,7 @@ public class CreditManagermentSystem implements Serializable{
 
 	}
 
-	public void edit() { //과외생 정보를 수정하는 함수
+	public void edit() {
 		try {
 			System.out.print("몇 번째 수업을 수정하시겠습니까?: ");
 			int number = input.nextInt();
@@ -104,13 +116,13 @@ public class CreditManagermentSystem implements Serializable{
 		}
 	}
 
-	public void view() { //모든 과외생들의 정보를 출력하는 함수 
+	public void view() { 
 		for(int i =0;i <KClist.size(); i++)	{
 			KClist.get(i).printInfo();
 		}
-		System.out.println(average('a'));
-		System.out.println(average('j'));
-		System.out.println(average('k'));
+//		System.out.println(average('a'));
+//		System.out.println(average('j'));
+//		System.out.println(average('k'));
 	}
 	public float average(char x) {
 		float ad = 0,au = 0,kd = 0,ku = 0,ju = 0,jd=0;

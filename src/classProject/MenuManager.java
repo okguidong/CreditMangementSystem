@@ -21,6 +21,7 @@ public class MenuManager {
 		Scanner input = new Scanner(System.in);
 
 		CreditManagermentSystem Credit_m = getObject("Credit_m.ser");
+		
 		if(Credit_m == null) {
 			Credit_m = new CreditManagermentSystem(input);
 		} else {
@@ -71,8 +72,6 @@ public class MenuManager {
 
 	public static CreditManagermentSystem getObject(String filename) {
 		CreditManagermentSystem Credit_m = null;
-
-		
 		try {
 			FileInputStream file = new FileInputStream(filename);
 			ObjectInputStream in = new ObjectInputStream(file);
@@ -112,4 +111,3 @@ public class MenuManager {
 	}
 }
 
-//

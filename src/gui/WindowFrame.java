@@ -20,7 +20,7 @@ public class WindowFrame extends JFrame {
 		
 		this.CreditManager = CreditManager;
 		menuselection = new MenuSelection(this);
-		creditadder = new CreditAdder(this);
+		creditadder = new CreditAdder(this,this.CreditManager);
 		creditviewer = new CreditViewer(this, this.CreditManager);
 		
 		this.setUpPanel(menuselection);

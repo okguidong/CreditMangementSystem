@@ -6,47 +6,62 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 
+import classProject.CreditManagermentSystem;
+import listener.CreditAdderCancelListener;
+import listener.CreditAdderListener;
+
 public class CreditAdder extends JPanel {
 
+	CreditManagermentSystem CreditManager;
 	WindowFrame frame;
 	
-	public CreditAdder(WindowFrame frame) {
+	public CreditAdder(WindowFrame frame,CreditManagermentSystem CreditManager) {
 		
 		this.frame = frame;
+		this.CreditManager = CreditManager;
 		
 		JPanel panel = new JPanel();
 		panel.setLayout(new SpringLayout());
 		
-		JLabel labelSubject = new JLabel("이름 : ", JLabel.TRAILING);
-		JTextField fieldSubject = new JTextField(10);
-		labelSubject.setLabelFor(fieldSubject);
-		panel.add(labelSubject);
-		panel.add(fieldSubject);
-		
-		JLabel labelName = new JLabel("점수 : ", JLabel.TRAILING);
+		JLabel labelName = new JLabel("이름 : ", JLabel.TRAILING);
 		JTextField fieldName = new JTextField(10);
 		labelName.setLabelFor(fieldName);
 		panel.add(labelName);
 		panel.add(fieldName);
 		
-		JLabel labelPhone = new JLabel("이수학점 : ", JLabel.TRAILING);
-		JTextField fieldPhone = new JTextField(10);
-		labelName.setLabelFor(fieldPhone);
-		panel.add(labelPhone);
-		panel.add(fieldPhone);
+		JLabel labelScore = new JLabel("점수 : ", JLabel.TRAILING);
+		JTextField fieldScore = new JTextField(10);
+		labelScore.setLabelFor(fieldScore);
+		panel.add(labelScore);
+		panel.add(fieldScore);
 		
-		JLabel labelGoal = new JLabel("종류 : ", JLabel.TRAILING);
-		JTextField fieldGoal = new JTextField(10);
-		labelName.setLabelFor(fieldGoal);
-		panel.add(labelGoal);
-		panel.add(fieldGoal);
+		JLabel labelCredit = new JLabel("이수학점 : ", JLabel.TRAILING);
+		JTextField fieldCredit = new JTextField(10);
+		labelCredit.setLabelFor(fieldCredit);
+		panel.add(labelCredit);
+		panel.add(fieldCredit);
 		
-		panel.add(new JButton("save"));
-		panel.add(new JButton("cancel"));
+		JLabel labelKind = new JLabel("종류 : ", JLabel.TRAILING);
+		JTextField fieldKind = new JTextField(10);
+		labelKind.setLabelFor(fieldKind);
+		
+		JButton saveButton =new JButton("save");
+		saveButton.addActionListener(new CreditAdderListener(fieldName,fieldScore,
+				fieldCredit,fieldKind,CreditManager));
+		
+		JButton cancelButton =new JButton("cancel");
+		cancelButton.addActionListener(new CreditAdderCancelListener(frame));
+		
+		panel.add(labelKind);
+		panel.add(fieldKind);
+		
+		panel.add(saveButton);
+		panel.add(cancelButton);
 		
 		SpringUtilities.makeCompactGrid(panel, 5, 2, 6, 6, 6, 6);
 		
 		this.add(panel);
 		this.setVisible(true);
+
 	}
 }
